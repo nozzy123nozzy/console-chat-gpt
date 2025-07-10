@@ -1,7 +1,7 @@
 from typing import Callable, Dict, List, Optional, Union
 
 import questionary
-from simple_term_menu import TerminalMenu
+from console_gpt.simple_term_menu_urwid import TerminalMenu
 
 from console_gpt.custom_stdout import custom_print
 from console_gpt.general_utils import flush_lines, use_emoji_maybe
