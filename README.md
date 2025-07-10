@@ -2,7 +2,7 @@
 
 <h1>
 
-console-chat-gpt v6
+console-chat-gpt v6 for Windows Native
 
 </h1>
 
@@ -12,6 +12,9 @@ _Enjoy seamless interactions with **OpenAI**, **MistralAI**, **Anthropic**, **xA
 
 <h3>
 
+This version of console-chat-gpt can work on PowerShell in Windows natively.
+
+Original:
 [Homepage](https://github.com/amidabuddha/consoleChatGPT) | [Examples](/examples)
 
 </h3>
@@ -79,12 +82,13 @@ personalization, control, and convenience.
 
 ## Installation and Usage
 
-> The script works fine on Linux and MacOS terminals. For Windows it's recommended to use [WSL](https://learn.microsoft.com/en-us/windows/wsl/).
+> The script works fine on Linux and MacOS also Windows PowerShell!.
 
-1. Clone the repository:
+1. Clone the repository and checkout the Windows native version:
 
    ```shell
-   git clone https://github.com/amidabuddha/console-chat-gpt.git
+   git clone https://github.com/nozzy123nozzy/console-chat-gpt.git
+   git checkout work-with-windows-native
    ```
 
 2. Go inside the folder:
@@ -95,6 +99,12 @@ personalization, control, and convenience.
 
 3. Install the necessary dependencies:
 
+   - for PowerShell on Windows
+   ```shell
+   start_ai.bat
+   ```
+
+   - for Linux / Mac
    ```shell
    python3 -m pip install -r requirements.txt
    ```
@@ -105,6 +115,11 @@ personalization, control, and convenience.
 
 6. Run the executable:
 
+   - for Windows
+
+   The start\_ai.bat automatically invoke main.py. You can see console-chat-gpt menu on powershell!
+
+   - for Linux,Mac
    ```shell
    python3 main.py
    ```
