@@ -57,7 +57,7 @@ DEFAULT_MULTI_SELECT_SELECT_ON_ACCEPT = True
 DEFAULT_PREVIEW_BORDER = True
 DEFAULT_PREVIEW_SIZE = 0.25
 DEFAULT_PREVIEW_TITLE = "preview"
-DEFAULT_QUIT_KEYS = ("escape", "q", "ctrl-g")
+DEFAULT_QUIT_KEYS = ("esc", "q", "ctrl-g")
 DEFAULT_SEARCH_CASE_SENSITIVE = False
 DEFAULT_SEARCH_HIGHLIGHT_STYLE = ("black", "yellow", "bold")
 DEFAULT_SEARCH_KEY = "/"
@@ -274,6 +274,9 @@ class TerminalMenu:
                     self._filtering_mode = True
                     self._emit("searchmodified","/")
                     return None
+                else:
+                    # For other keys, use the default behavior
+                    return super().keypress(size, key)
             else:
                 if len(key)==1 and 34 < ord(key) and ord(key)<=124:
                     self._filtering_strings = self._filtering_strings + key
@@ -533,7 +536,7 @@ class TerminalMenu:
                         )
                 elif isinstance(item, str):
                     try:
-                        self._menu_item_widget_list[item].set_state(True)
+                        self._menu_item_widget_list[entry_to_index[item]].set_state(True)
                     except KeyError as e:
                         raise UnknownMenuEntryError(f'Pre-selection "{item}" is not a valid menu entry.') from e
                 else:
@@ -628,7 +631,11 @@ class TerminalMenu:
         loop.run()
         choices = [ idx for idx,widget in enumerate(self._menu_item_widget_list) \
                 if widget.get_state() == True ]
-        return choices if 0 < len(choices) else None
+        if 0 == len(choices):
+            return None
+        elif self._multi_select == False:
+            return choices[0]
+        return choices 
 
 
 def get_argumentparser() -> argparse.ArgumentParser:
