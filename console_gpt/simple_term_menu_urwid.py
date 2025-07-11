@@ -39,6 +39,10 @@ __license__ = "MIT"
 __version_info__ = (1, 0, 0)
 __version__ = ".".join(map(str, __version_info__))
 
+# workaround the argument type mismuch error of questionary in ivoking win32 syscall
+if sys.platform == "win32":
+    # reset the type checking because the same name type but different type in questionary package.
+    urwid.display._win32.GetConsoleScreenBufferInfo.argtypes=None
 
 DEFAULT_ACCEPT_KEYS = ("enter",)
 DEFAULT_CLEAR_MENU_ON_EXIT = True
